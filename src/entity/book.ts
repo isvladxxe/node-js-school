@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 import { Length, IsDateString } from 'class-validator';
-import { User } from './user'
+import { User } from './user';
 
 @Entity()
 export class Book {
@@ -13,13 +13,13 @@ export class Book {
 
     @Column({ length: 4096 })
     @Length(0, 4096)
-    description: string
+    description: string;
 
     // hope this is book publication date???
     // else @CreateDateColumn({ type: 'timestamptz' })
     @Column({ type: 'timestamptz' })
     @IsDateString()
-    date: Date
+    date: Date;
 
     @ManyToOne(type => User, user => user.books)
     user: User;
