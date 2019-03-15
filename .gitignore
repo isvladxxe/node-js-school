@@ -18,3 +18,5 @@ dist/**/*
 
 # Logging files
 *.log
+
+*.t3.md
