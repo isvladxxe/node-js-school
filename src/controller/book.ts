@@ -9,9 +9,8 @@ export default class BookController {
     public static async getUserBooks(ctx: BaseContext) {
 
         const booksRepository: Repository<Book> = getManager().getRepository(Book);
-
         const books: Book[] = await booksRepository.find({
-            user: { id: ctx.params.userId }
+            user: { id: +ctx.params.userId || 0 }
         });
 
         ctx.status = 200;
@@ -21,7 +20,7 @@ export default class BookController {
     public static async createUserBook(ctx: BaseContext) {
 
         const userRepository: Repository<User> = getManager().getRepository(User);
-        const user = await userRepository.findOne({ id: ctx.params.userId });
+        const user = await userRepository.findOne({ id: +ctx.params.userId || 0 });
 
         const booksRepository: Repository<Book> = getManager().getRepository(Book);
 
